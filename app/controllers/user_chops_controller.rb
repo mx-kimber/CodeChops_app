@@ -1,0 +1,2 @@
+class UserChopsController < ApplicationController
+end
