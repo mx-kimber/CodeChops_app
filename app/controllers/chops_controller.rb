@@ -10,7 +10,7 @@ class ChopsController < ApplicationController
     render: show
   end
 
-    def create
+    def create    # dont forget to add if category_id is present
     @chop = Chop.new(
       problem: params[:chop][:problem],
       solution: params[:chop][:solution],
