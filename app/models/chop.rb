@@ -1,0 +1,2 @@
+class Chop < ApplicationRecord
+end
