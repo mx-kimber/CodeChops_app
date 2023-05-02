@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # get "/chops" => "chops#index"
 
   resources :chops
+  resources :categories
 
 
   get "/signup" => "users#new"

@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many :chops
+  # has_many :chops
 end
