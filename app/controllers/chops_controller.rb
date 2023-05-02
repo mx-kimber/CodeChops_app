@@ -1,0 +1,2 @@
+class ChopsController < ApplicationController
+end
