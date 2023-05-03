@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    @chops = Chop.all
-    render template : "users/new"
-  end
 
   def new
     @user = User.new

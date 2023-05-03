@@ -1,11 +1,12 @@
 class UserChopsController < ApplicationController
+  before_action :authenticate_user
 
-  def index
-    @chops = Chop.all
-    if params[:category_id].present?
-      @chops = Chop.where(category_id: params[:category_id])
-    end
-  end
+  # def index
+  #   @chops = Chop.all
+  #   if params[:category_id].present?
+  #     @chops = Chop.where(category_id: params[:category_id])
+  #   end
+  # end
 
   def show
     @chop = Chop.find(params[:id])

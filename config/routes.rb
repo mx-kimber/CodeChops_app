@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :categories do
     resources :user_chops
   end
-  resources :user_chops
 
   get "/signup" => "users#new"
   post "/users" => "users#create"

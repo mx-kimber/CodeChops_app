@@ -1,7 +1,12 @@
 class ChopsController < ApplicationController
+  before_action :require_login
 
   def index
-    @chops = Chop.all
+    if params[:category_id].present?
+      @tasks = Task.joins(:categories).where(categories: { id: params[:category_id] })
+    else
+      @tasks = Task.where(user_id: current_user.id)
+    end
     render :index
   end
 
@@ -21,10 +26,10 @@ class ChopsController < ApplicationController
 
   end
 
-  # def edit
-  #   @chop = Chop.find_by(id: params[:id])
-  #   render :edit
-  # end
+  def edit
+    @chop = Chop.find_by(id: params[:id])
+    render :edit
+  end
 
   # def update
   #   chop = Chop.find_by(id: params[:id]
