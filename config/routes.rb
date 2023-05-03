@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  # get "/chops" => "chops#index"
+  root "chops#index"
 
   resources :chops
-  resources :categories
-
+  resources :categories do
+    resources :user_chops
+  end
+  resources :user_chops
 
   get "/signup" => "users#new"
   post "/users" => "users#create"

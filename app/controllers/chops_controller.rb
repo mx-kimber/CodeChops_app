@@ -7,7 +7,7 @@ class ChopsController < ApplicationController
 
   def show
     @chop = Chop.find_by(id: params[:id])
-    render: show
+    render :show
   end
 
   def create    # dont forget to add if category_id is present

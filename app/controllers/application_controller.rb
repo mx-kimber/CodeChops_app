@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :current_user
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
       flash[:error] = "You must be logged in to access this page."
       redirect_to login_path
     end
+  end
+
+  def category_params
+    params.require(:category).permit(:name)
   end
 
 end
