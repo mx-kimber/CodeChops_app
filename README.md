@@ -1,24 +1,45 @@
-# README
+``` diff 
++ CodeChops 
++ A Ruby deliberate practice tool for beginners
+- Inspired by my experiences in coding bootcamp
+```
+### Versions:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> Ruby 3.2.1.  
+> Rails 7.0.4.3 
 
-Things you may want to cover:
 
-* Ruby version
+### Gems: 
+```
+gem 'bcrypt', '~> 3.1.7'
+```
 
-* System dependencies
+<hr>
 
-* Configuration
+``` diff
++ User Story - MVP
+```
 
-* Database creation
+* User can sign up
+* User can log in
+* User can log out
 
-* Database initialization
+* User can choose all skills(chops) to randomize
+* User can filter through a category to randomize
+* User can view the solution with resources 
+* User can rate their difficulty level
+* User can store problems with their difficulty level
 
-* How to run the test suite
+* User can create, show, and update a new category (only admin can delete)
 
-* Services (job queues, cache servers, search engines, etc.)
+* User can create, show, and edit a new skill(chop) (only admin can delete)
+* User can assign a chop to a category when creating a new one
 
-* Deployment instructions
+``` diff
++ Future features:
+```
+* User can time themselves
+* User can log notes for each category
+* User can filter by difficulty rating
 
-* ...
+<hr>
