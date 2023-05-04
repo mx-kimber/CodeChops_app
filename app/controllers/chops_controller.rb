@@ -3,7 +3,8 @@ class ChopsController < ApplicationController
 
   def index
     if params[:category_id].present?
-      @chops = Chop.joins(:categories).where(categories: { id: params[:category_id] })
+      @chops = Chop.joins(:category).where(categories: { id: params[:category_id] })
+
     else
       @chops = Chop.all
     end
@@ -23,15 +24,9 @@ class ChopsController < ApplicationController
     @chop = Chop.new(
       user_id: current_user.id,
       problem: params[:chop][:problem],
-      solution: params[:chop][:solution]
+      solution: params[:chop][:solution],
+      category_id: params[:chop][:category_id]
     )
-
-    category_id = params[:chop][:category_id]
-
-    if category_id.present?
-      category = Category.find(category_id)
-      @chop.categories << category
-    end
 
     if @chop.save
       redirect_to chop_path(@chop)
@@ -39,6 +34,7 @@ class ChopsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def edit
     @chop = Chop.find_by(id: params[:id])
