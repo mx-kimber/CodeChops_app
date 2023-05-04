@@ -1,0 +1,12 @@
+<h1>Chops</h1>
+<h1><%= @chop.problem %></h1>
+<p><%= @chop.solution %></p>
+
+<p>User ID: <%= current_user.id %></p>
+<p>Category: <%= @chop.category.name %></p>
+
+<br>
+<br>
+
+<p><%= link_to "Edit chop", edit_chop_path(@chop) %></p>
+<a href="/chops/<%= @chop.id %>" data-turbo-method="delete" data-confirm="Are you sure you want to delete this chop?">Delete chop</a>

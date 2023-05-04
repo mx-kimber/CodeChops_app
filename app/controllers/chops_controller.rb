@@ -3,9 +3,9 @@ class ChopsController < ApplicationController
 
   def index
     if params[:category_id].present?
-      @tasks = Task.joins(:categories).where(categories: { id: params[:category_id] })
+      @chops = Chop.joins(:categories).where(categories: { id: params[:category_id] })
     else
-      @tasks = Task.where(user_id: current_user.id)
+      @chops = Chop.where(user_id: current_user.id)
     end
     render :index
   end
@@ -15,15 +15,28 @@ class ChopsController < ApplicationController
     render :show
   end
 
-  def create    # dont forget to add if category_id is present
-  @chop = Chop.new(
-    problem: params[:chop][:problem],
-    solution: params[:chop][:solution],
-    user_id: current_user.id
-    )
-    @chop.save
-    redirect_to "/chops" #not sure if correct
+  def new
+    @chop = Chop.new
+  end
 
+  def create
+    @chop = Chop.new(
+      user_id: current_user.id,
+      problem: params[:chop][:problem],
+      solution: params[:chop][:solution]
+    )
+    category_id = params[:chop][:category_id]
+
+    if category_id.present?
+      category = Category.find(category_id)
+      @chop.categories << category
+    end
+
+    if @chop.save
+      redirect_to chop_path(@chop)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -31,12 +44,17 @@ class ChopsController < ApplicationController
     render :edit
   end
 
-  # def update
-  #   chop = Chop.find_by(id: params[:id]
-  #   chop.problem = params[:chop][:problem]
-  #   chop.solution = params[:chop][:solution]
-  #   chop.save
-  #     redirect_to "/chops/#{@chop.id}" #not sure if correct
-  #   )
-  # end
+  def update
+    chop = Chop.find_by(id: params[:id])
+    chop.problem = params[:chop][:problem]
+    chop.solution = params[:chop][:solution]
+    chop.save
+    redirect_to chop_path(chop)
+  end
+
+  def destroy
+    chop = Chop.find_by(id: params[:id])
+    chop.destroy
+    redirect_to chops_path
+  end
 end

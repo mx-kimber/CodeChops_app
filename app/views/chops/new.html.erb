@@ -1,20 +1,26 @@
 <h1>New Chop</h1>
 
-<tbody>
-  <%= form_with(model: @chop, local: true) do |form| %>
-    <p><%= form.label :problem %><br>
-    <%= form.text_field :problem %></p>
+<%= form_with(model: @chop, local: true) do |form| %>
+  <div>
+    <%= form.label :problem %><br>
+    <%= form.text_field :problem %>
+  </div>
 
-    <p><%= form.label :solution %><br>
-    <%= form.text_field :solution %></p>
+  <div>
+    <%= form.label :solution %><br>
+    <%= form.text_field :solution %>
+  </div>
 
-    <p><%= form.label :user_id %><br>
-    <%= form.text_field :user_id %></p>
+  <div>
+    <%= form.label :user_id %><br>
+    <%= form.text_field :user_id %>
+  </div>
 
-    <p><%= form.label :category_id, "Category" %>
-    <p><%= form.collection_select :category_id, Category.all, :id, :name %></p>
-    <hr>
-    <%= form.submit "Create Chop" %>
-  <% end %>
-  </tbody>
-</p>
+  <div>
+    <%= form.label :category_id, "Category" %><br>
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
+  </div>
+
+  <hr>
+  <%= form.submit "Create Chop" %>
+<% end %>

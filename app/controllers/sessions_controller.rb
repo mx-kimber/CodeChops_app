@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
     render template: "sessions/new"
   end

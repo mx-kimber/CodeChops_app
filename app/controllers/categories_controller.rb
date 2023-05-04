@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @chops = @category.chops
+    render :show
   end
 
   def new
@@ -15,25 +15,26 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category = Category.new(name: params[:category][:name])
     if @category.save
-      redirect_to @category
+      redirect_to category_path(@category)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
+  # def edit
+  #   @category = Category.find(params[:id])
+  # end
 
-  def update
-    @category = Category.find(params[:id])
-    if @category.update(category_params)
-      redirect_to @category
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   @category = Category.find(params[:id])
+  #   if @category.update(category_params)
+  #     redirect_to @category
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @category = Category.find(params[:id])

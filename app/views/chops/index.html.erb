@@ -1,3 +1,29 @@
-<h1>Chops</h1>
+<h1>All Chops</h1>
+
+<%= link_to "All Chops", "/chops", class: "btn btn-sm btn-primary" %>  <%= link_to "Categories", categories_path, class: "btn btn-sm btn-primary" %>   <%= link_to "New Chop ", "/chops/new", class: "btn btn-sm btn-primary ml-auto" %>
+<hr>
+<%= form_tag chops_path, method: :get do %>
+  <%= label_tag :category_id, "Category" %>
+  <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), include_blank: true %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<br>
+<tbody>
+  <% @chops.each do |chop| %>
+    <ul>
+    <p> <%= link_to chop.problem, chop_path(chop.id) %>
+      <br>
+      <strong>Problem: </strong><%= chop.problem %>
+      <br>
+      <strong>Solution: </strong><%= chop.solution %>
+      <br>
+      <strong>Category: </strong>
+        <% chop.categories.each do |category| %>
+          <%= category.name %><br>
+        <% end %></p>
+    </ul>
+  <% end %>
+</tbody>
 
 

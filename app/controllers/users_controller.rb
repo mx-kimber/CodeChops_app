@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render template: "chops/new"
+    render template: "users/new"
   end
 
   def create
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       name: params[:user][:name],
       email: params[:user][:email],
       password: params[:user][:password],
-      password_confirmation: params[:user][:password_confirmation],
+      password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
       session[:user_id] = @user.id

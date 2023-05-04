@@ -17,8 +17,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def chop_params
+    params.require(:chop).permit(:problem, :solution, :category_id, :user_id)
+  end
+
   def category_params
     params.require(:category).permit(:name)
   end
 
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 end
+
