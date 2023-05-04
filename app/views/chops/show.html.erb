@@ -1,8 +1,9 @@
 <h1>Chops</h1>
-<h1><%= @chop.problem %></h1>
-<p><%= @chop.solution %></p>
+<p><strong>Problem:</strong><%= @chop.problem %></p>
+<p><strong>Solution:</strong><%= @chop.solution %></p>
 
-<p>User ID: <%= current_user.id %></p>
+
+<p>Created by: <%= current_user.name %></p>
 <p>Category: <%= @chop.category.name %></p>
 
 <br>

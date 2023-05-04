@@ -4,7 +4,7 @@
 <hr>
 <%= form_tag chops_path, method: :get do %>
   <%= label_tag :category_id, "Category" %>
-  <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), include_blank: true %>
+ <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name", nil), include_blank: true %>
   <%= submit_tag "Filter" %>
 <% end %>
 
@@ -12,18 +12,21 @@
 <tbody>
   <% @chops.each do |chop| %>
     <ul>
-    <p> <%= link_to chop.problem, chop_path(chop.id) %>
+      <p> <%= link_to chop.problem, chop_path(chop.id) %>
       <br>
       <strong>Problem: </strong><%= chop.problem %>
       <br>
       <strong>Solution: </strong><%= chop.solution %>
       <br>
-      <strong>Category: </strong>
-        <% chop.categories.each do |category| %>
-          <%= category.name %><br>
-        <% end %></p>
+      <strong>Category: </strong><%= chop.category.name %>
+      <br>
+      <strong>Rating: </strong><%= chop.user_chops.where(user_id: current_user.id).first&.rating %>
+
+      </p>
     </ul>
   <% end %>
 </tbody>
+
+
 
 

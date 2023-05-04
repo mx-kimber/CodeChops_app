@@ -5,7 +5,7 @@ class ChopsController < ApplicationController
     if params[:category_id].present?
       @chops = Chop.joins(:categories).where(categories: { id: params[:category_id] })
     else
-      @chops = Chop.where(user_id: current_user.id)
+      @chops = Chop.all
     end
     render :index
   end
@@ -25,6 +25,7 @@ class ChopsController < ApplicationController
       problem: params[:chop][:problem],
       solution: params[:chop][:solution]
     )
+
     category_id = params[:chop][:category_id]
 
     if category_id.present?

@@ -1,26 +1,32 @@
-<h1>New Chop</h1>
+<%= form_with(model: [@user, @chop]) do |form| %>
+  <% if @chop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chop.errors.count, "error") %> prohibited this chop from being saved:</h2>
 
-<%= form_with(model: @chop, local: true) do |form| %>
-  <div>
-    <%= form.label :problem %><br>
-    <%= form.text_field :problem %>
+      <ul>
+      <% @chop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :problem %>
+    <%= form.text_area :problem, rows: 4 %>
   </div>
 
-  <div>
-    <%= form.label :solution %><br>
+  <div class="field">
+    <%= form.label :solution %>
     <%= form.text_field :solution %>
   </div>
 
-  <div>
-    <%= form.label :user_id %><br>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :category_id, "Category" %><br>
+  <div class="field">
+    <%= form.label :category_id %>
     <%= form.collection_select :category_id, Category.all, :id, :name %>
   </div>
 
-  <hr>
-  <%= form.submit "Create Chop" %>
+  <div class="actions">
+    <%= form.submit "Create Chop" %>
+  </div>
 <% end %>
