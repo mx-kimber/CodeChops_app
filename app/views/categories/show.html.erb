@@ -17,7 +17,4 @@
 <a href="/categories/<%= @category.id %>" data-turbo-method="delete">Delete Category</a>
 
 
-<a href="/categories">See all categories</a>
-
-
-<a href="/categories/<%= @category.id %>" data-turbo-method="delete">Delete Category</a>
+<a href="<%= edit_category_path(@category) %>">Edit Category</a>
