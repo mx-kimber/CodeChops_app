@@ -1,0 +1,24 @@
+<h1>New Category</h1>
+<%= form_with model: @category do |form| %>
+
+  <% if flash[:error] %>
+      <div><%= flash[:error] %></div>
+  <% end%>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <% if @category.errors[:name].any? %>
+      <div class="error">
+        <%= @category.errors[:name].join(", ") %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+  <a href="/categories">See All Categories</a>
+<% end%>
+

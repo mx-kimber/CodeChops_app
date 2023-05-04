@@ -1,0 +1,23 @@
+<h1><%= @category.name %></h1>
+
+<% if @category.chops.any? %>
+  <ul>
+    <% @category.chops.each do |chop| %>
+      <li><%= link_to chop.problem, chop_path(chop) %>
+      <%= link_to chop.solution, chop_path(chop) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No chops found for this category.</p>
+<% end %>
+
+<a href="/categories">See all categories</a>
+
+<a href="/categories/<%= @category.id %>" data-turbo-method="delete">Delete Category</a>
+
+
+<a href="/categories">See all categories</a>
+
+
+<a href="/categories/<%= @category.id %>" data-turbo-method="delete">Delete Category</a>

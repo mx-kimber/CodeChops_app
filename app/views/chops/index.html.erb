@@ -18,11 +18,7 @@
       <br>
       <strong>Solution: </strong><%= chop.solution %>
       <br>
-      <strong>Category: </strong><%= chop.category.name %>
-      <br>
-      <strong>Rating: </strong><%= chop.user_chops.where(user_id: current_user.id).first&.rating %>
-
-      </p>
+      <strong>Category: </strong><%= chop.category.name %></p>
     </ul>
   <% end %>
 </tbody>
