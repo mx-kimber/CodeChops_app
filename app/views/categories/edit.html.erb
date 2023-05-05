@@ -13,13 +13,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <p><%= f.label :name %><br>
+    <%= f.text_field :name %></p>
   </div>
 
   <div class="actions">
-    <%= f.submit "Save Changes" %>
+    <p><%= f.submit "Save Changes" %></p>
   </div>
 <% end %>
 
-<%= link_to 'Back', categories_path %>
+<%= link_to 'All Categories', categories_path %>
