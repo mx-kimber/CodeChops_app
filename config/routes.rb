@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :user_dashboard do
+    get :randomize, on: :collection
+  end
+
+
   get '/user_chops' => 'user_chops#index'
 
   get '/signup' => 'users#new'

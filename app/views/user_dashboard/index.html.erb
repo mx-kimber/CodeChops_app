@@ -1,0 +1,23 @@
+<h1>User Dashboard</h1>
+
+<%= form_tag user_dashboard_index_path, method: :get do %>
+  <%= label_tag :filter_option, "Filter by:" %>
+  <%= select_tag :filter_option, options_for_select(@filter_options, params[:filter_option]), include_blank: true %>
+
+  <% if params[:filter_option] == "Category" %>
+    <%= label_tag :category_id, "Category" %>
+    <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), include_blank: true %>
+  <% end %>
+
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<br>
+
+<% if @chop %>
+  <p><strong>Problem:</strong> <%= @chop.problem %></p>
+  <p><strong>Solution:</strong> <%= @chop.solution %></p>
+  <p><strong>Category:</strong> <%= @chop.category.name %></p>
+<% else %>
+  <p>No chops found.</p>
+<% end %>
