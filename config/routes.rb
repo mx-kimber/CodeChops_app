@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   resources :user_chops, only: [:create, :show, :update]
 
+  resources :users
+
   get '/user_chops' => 'user_chops#index'
 
   get '/signup' => 'users#new'
@@ -15,5 +17,4 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 end
-
 
