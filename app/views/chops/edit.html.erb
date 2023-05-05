@@ -1,1 +1,23 @@
-<h1>Edit Chops</h1>
+<h1>Edit Chop</h1>
+
+<%= form_with model: @chop do |form| %>
+
+  <p>Created by: <%= current_user.name %></p>
+  <hr>
+    <p><%= form.label :problem %><br>
+    <%= form.text_field :problem %></p>
+
+    <p><%= form.label :solution %><br>
+    <%= form.text_area :solution %></p>
+
+    <p><%= form.label :category %>
+    <%= form.collection_select :category, Category.all, :id, :name %></p>
+
+
+<hr>
+    <%= form.submit %>
+
+<% end %>
+
+<a href="/chops/" data-turbo-method="delete">Delete Chop</a>
+<a href="/chops">Back to Chops</a>
