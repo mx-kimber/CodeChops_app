@@ -28,5 +28,9 @@ class ApplicationController < ActionController::Base
   def session_params
     params.require(:session).permit(:email, :password)
   end
+
+  def user_chop_params
+    params.require(:user_chop).permit(:chop_id, :rating)
+  end
 end
 

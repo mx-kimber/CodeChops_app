@@ -2,30 +2,25 @@ class UserChopsController < ApplicationController
   before_action :authenticate_user
 
   def index
+    @user_chops = current_user.user_chops
+  end
 
-    @user = current_user
-    @user_chops = @user.user_chops.includes(:chop)
-
-    @chops = Chop.all
-    if params[:category_id].present?
-      @chops = Chop.where(category_id: params[:category_id])
-    end
+  def new
+    @user_chop = current_user.user_chops.build
   end
 
   def show
-    @chop = Chop.find(params[:id])
+    @user_chop = current_user.user_chops.find(params[:id])
   end
 
   def create
-    @chop = Chop.find(params[:id])
-    @chop.update(rating: params[:rating])
-    redirect_to chop_path(@chop)
-  end
-#come back to this, not sure if correct
-  def store
-    @chop = Chop.find(params[:id])
-    @chop.update(difficulty_level: params[:difficulty_level], stored_by: current_user.id)
-    redirect_to chop_path(@chop)
+    @user_chop = current_user.user_chops.build(user_chop_params)
+
+    if @user_chop.save
+      redirect_to user_chops_path, notice: "The problem has been saved."
+    else
+      render :new
+    end
   end
 
 end
