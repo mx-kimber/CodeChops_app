@@ -71,4 +71,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "bcrypt", "~> 3.1.7"
+gem "seed_dump"
+gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap', '~> 5.3.0.alpha3'
