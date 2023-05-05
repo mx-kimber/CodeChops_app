@@ -12,6 +12,8 @@
 ### Gems: 
 ```
 gem 'bcrypt', '~> 3.1.7'
+gem "seed_dump"
+gem 'bootstrap', '~> 5.3.0.alpha3'
 ```
 
 <hr>
