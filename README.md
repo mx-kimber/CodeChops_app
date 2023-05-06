@@ -32,10 +32,8 @@ gem 'bootstrap', '~> 5.3.0.alpha3'
 * User can rate their difficulty level
 * User can store problems with their difficulty level
 
-* User can create, show, and update a new category (only admin can delete)
-
-* User can create, show, and edit a new skill(chop) (only admin can delete)
-* User can assign a chop to a category when creating a new one
+* User can create a new skill(chop) to contribute - only admin can edit/delete
+* Curent user can CRUD their own skills saved. 
 
 ``` diff
 + Future features:
@@ -43,5 +41,6 @@ gem 'bootstrap', '~> 5.3.0.alpha3'
 * User can time themselves
 * User can log notes for each category
 * User can filter by difficulty rating
+* User can contact admin for editing and deleting new contributions
 
 <hr>
