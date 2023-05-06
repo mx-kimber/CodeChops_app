@@ -1,27 +1,30 @@
 <h1>All Chops</h1>
 
-<%= link_to "All Chops", "/chops", class: "btn btn-sm btn-primary" %>  <%= link_to "Categories", categories_path, class: "btn btn-sm btn-primary" %>   <%= link_to "New Chop ", "/chops/new", class: "btn btn-sm btn-primary ml-auto" %>
+<%= link_to "All Chops", "/chops", class: "btn btn-sm btn-primary" %>
+<%= link_to "Categories", categories_path, class: "btn btn-sm btn-primary" %>
+<%= link_to "New Chop", "/chops/new", class: "btn btn-sm btn-primary ml-auto" %>
+
 <hr>
+
 <%= form_tag chops_path, method: :get do %>
   <%= label_tag :category_id, "Category" %>
- <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name", nil), include_blank: true %>
+  <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "name", nil), include_blank: true %>
   <%= submit_tag "Filter" %>
 <% end %>
 
 <br>
-<tbody>
+
+<div>
   <% @chops.each do |chop| %>
-    <ul>
-      <p> <%= link_to chop.problem, chop_path(chop.id) %>
-      <br>
-      <strong>Problem: </strong><%= chop.problem %>
-      <br>
-      <strong>Solution: </strong><%= chop.solution %>
-      <br>
-      <strong>Category: </strong><%= chop.category.name %></p>
-    </ul>
+    <article>
+      <h3><%= link_to chop.problem, chop_path(chop.id) %></h3>
+      <p><strong>Problem:</strong> <%= chop.problem %></p>
+      <p><strong>Solution:</strong> <%= chop.solution %></p>
+      <p><strong>Category:</strong> <%= chop.category.name %></p>
+    </article>
   <% end %>
-</tbody>
+</div>
+
 
 
 

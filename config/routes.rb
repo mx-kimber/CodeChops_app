@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :user_dashboard do
+  resources :user_dashboard, only: [:index] do
     get :randomize, on: :collection
+    post :save_chop, on: :member
   end
-
 
   get '/user_chops' => 'user_chops#index'
 
@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 end
+
 

@@ -1,23 +1,38 @@
 <h1>User Dashboard</h1>
 
 <%= form_tag user_dashboard_index_path, method: :get do %>
-  <%= label_tag :filter_option, "Filter by:" %>
-  <%= select_tag :filter_option, options_for_select(@filter_options, params[:filter_option]), include_blank: true %>
+  <%= label_tag :filter_option, "Randomize Problem:" %>
+  <%= select_tag :filter_option, options_for_select(@filter_options, params[:filter_option]), include_blank: false %>
 
   <% if params[:filter_option] == "Category" %>
     <%= label_tag :category_id, "Category" %>
-    <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), include_blank: true %>
+    <%= select_tag :category_id, options_from_collection_for_select(Category.all, "id", "name", params[:category_id]), include_blank: false %>
   <% end %>
 
-  <%= submit_tag "Filter" %>
+  <%= submit_tag "Go!" %>
 <% end %>
 
 <br>
 
 <% if @chop %>
-  <p><strong>Problem:</strong> <%= @chop.problem %></p>
-  <p><strong>Solution:</strong> <%= @chop.solution %></p>
   <p><strong>Category:</strong> <%= @chop.category.name %></p>
+  <p><strong>Problem:</strong> <%= @chop.problem %></p>
+
+  <% if @show_solution %>
+    <p><strong>Solution:</strong> <%= @chop.solution %></p>
+    <%= form_tag save_chop_user_dashboard_path(@chop), method: :post do %>
+      <%= hidden_field_tag :chop_id, @chop.id %>
+      <%= label_tag :rating, "Rating:" %>
+      <%= select_tag :rating, options_for_select(['Easy', 'Medium', 'Difficult']), include_blank: true %>
+      <%= submit_tag "Save Chop" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Show Solution", user_dashboard_index_path(show_solution: true, filter_option: params[:filter_option], category_id: params[:category_id], chop_id: @chop.id), class: "btn btn-sm btn-primary" %>
+  <% end %>
 <% else %>
   <p>No chops found.</p>
 <% end %>
+
+
+
+
